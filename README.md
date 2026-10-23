@@ -1,8 +1,10 @@
+
 # MNIST Veri Seti ile MLP Tabanlı El Yazısı Rakam Tanıma
 
-Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-Layer Perceptron - MLP) mimarisi ile el yazısı rakamları sınıflandırmak ve eğitilen modelin gerçek hayattaki el yazısı görselleri (öğrenci numarası) üzerindeki başarısını değerlendirmek amacıyla geliştirilmiştir. Ödevde istendiği için modelde CNN  **kullanılmamıştır.**
+Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-Layer Perceptron - MLP) mimarisi ile el yazısı rakamları sınıflandırmak ve eğitilen modelin gerçek hayattaki el yazısı görselleri (öğrenci numarası) üzerindeki başarısını değerlendirmek amacıyla geliştirilmiştir. Ödev isterlerine uygun olarak modelde CNN (Evrişimli Sinir Ağı) **kullanılmamıştır.**
 
 ## 1. Proje Yapısı
+
 ```text
 ├── data/                       # İndirilen MNIST veri seti
 ├── custom_digits/              # Kendi el yazımla yazdığım okul numarası görselleri (01.jpeg - 11.jpeg)
@@ -12,6 +14,7 @@ Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-La
 ├── accuracy_loss_metrics.png   # Eğitim sürecine ait metrik grafikleri
 ├── requirements.txt            # Gerekli kütüphaneler listesi
 └── README.md                   # Proje raporu
+```
 
 ## 2. Model Mimarisi ve Hiperparametreler
 
@@ -27,31 +30,29 @@ Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-La
 
 ## 3. Deney Sonuçları ve Başarım Metrikleri
 
-Eğitim sürecinde ağırlıklar `torch.manual_seed(42)` ile sabitlenmiştir. CPU üzerinde elde edilen nihai metrikler aşağıda verilmiştir.
+Eğitim sürecinde ağırlıklar `torch.manual_seed(42)` ile sabitlenmiştir. CPU üzerinde elde edilen nihai metrikler aşağıdadır:
 
 | Metrik | Değer |
-|---|---:|
-| Son Training Loss | 0.0122 |
-| Son Validation Loss | 0.1018 |
-| Son Training Accuracy | %99.61 |
-| Son Validation Accuracy | %97.99 |
-| Test Accuracy | %98.23 |
-| Eğitim Süresi | Yaklaşık 128.10 saniye |
+| :--- | :--- |
+| **Training Loss** | 0.0122 |
+| **Validation Loss** | 0.1018 |
+| **Training Accuracy** | %99.61 |
+| **Validation Accuracy** | %97.99 |
+| **Test Accuracy** | %98.23 |
+| **Eğitim Süresi** | ~128.10 saniye |
 
 ### Loss ve Accuracy Grafikleri
 
-Modelin 15 epoch boyunca eğitim (training) ve doğrulama (validation) setleri üzerindeki başarım eğrileri aşağıdaki görselle gösterilmektedir.
-
-![Eğitim ve doğrulama metrikleri](accuracy_loss_metrics.png)
+![Training and Validation Metrics](accuracy_loss_metrics.png)
 
 ## 4. Kendi El Yazısı Görsellerinin Değerlendirilmesi
 
-Boş bir A4 kağıdına yazılan 11 haneli okul numarası görselleri ayrı görsellere bölünerek `custom_digits/` klasörüne eklenmiştir. Görseller, OpenCV kullanılarak gri tonlamaya dönüştürme (Grayscale), eşikleme (Thresholding) ve 28 × 28 boyutuna yeniden ölçeklendirme (Resize) işlemlerinden geçirilmiştir. Ardından `predict.py` dosyası ile modele verilmiştir.
+Boş bir A4 kağıdına yazılan 11 haneli okul numarası görselleri kırılarak `custom_digits/` klasörüne eklenmiş, OpenCV yardımıyla ön işlemeden (Grayscale, Thresholding, 28x28 Resize) geçirilerek `predict.py` vasıtasıyla modele sunulmuştur.
 
-### Tahmin Sonuçları
+### Tahmin Sonuçları Tablosu:
 
 | Dosya Adı | Modelin Tahmini | Güven Skoru |
-|---|---:|---:|
+| :--- | :---: | :---: |
 | `01.jpeg` | 2 | %100.00 |
 | `02.jpeg` | 4 | %100.00 |
 | `03.jpeg` | 7 | %94.88 |
@@ -66,45 +67,8 @@ Boş bir A4 kağıdına yazılan 11 haneli okul numarası görselleri ayrı gör
 
 ## 5. Genel Değerlendirme ve Tartışma
 
-### 5.1. MLP Performansı
-
-Model, standart MNIST test seti üzerinde %98.23 doğruluk oranına ulaşmıştır. Eğitim doğruluğunun (%99.61), doğrulama doğruluğundan (%97.99) yüksek olması, modelin eğitim verilerinde daha başarılı olduğunu göstermektedir. Bu fark, bir miktar ezberleme (overfitting) ihtimaline işaret edebilir; ancak tek başına kesin kanıt değildir.
-
-### 5.2. Gerçek Hayat Verilerinde MLP Sınırlamaları
-
-- MNIST veri setindeki rakamlar genellikle 28 × 28 piksel boyutunda, gri tonlamalı ve belirli bir ön işleme düzenine sahiptir.
-- Kendi el yazımızdaki eğim, çizgi kalınlığı, rakamın merkezden kayması ve arka plan farklılıkları modelin tahminlerini etkileyebilir.
-- MLP, görüntüyü 784 elemanlı bir piksel dizisi olarak değerlendirir. Bu nedenle piksellerin konumuna duyarlıdır ve küçük konum değişikliklerinden etkilenebilir.
-- CNN mimarileri, evrişim katmanları sayesinde yerel şekil ve kenar özelliklerini öğrenebilir. Bu özellikleri sayesinde görüntü sınıflandırma görevlerinde avantaj sağlayabilirler.
-
-### 5.3. Sonuç
-
-Bu projede, CNN kullanılmadan, en az iki gizli katmana sahip bir MLP modeli ile el yazısı rakam sınıflandırması gerçekleştirilmiştir. Eğitim, doğrulama ve test sonuçları modelin MNIST veri setinde yüksek doğruluk elde ettiğini göstermektedir. Kendi el yazısı görsellerindeki sonuçlar ise model başarısının yalnızca test doğruluğuna değil, görüntülerin hazırlanma biçimine ve eğitim verileriyle benzerliğine de bağlı olduğunu göstermektedir.
-
-## 6. Kullanılan Teknolojiler
-
-- **Python**
-- **PyTorch:** Model oluşturma ve eğitim
-- **Torchvision:** MNIST veri setini yükleme
-- **OpenCV:** El yazısı görsellerini ön işleme
-- **Matplotlib:** Eğitim ve doğrulama grafiklerini oluşturma
-
-## 7. Projeyi Çalıştırma
-
-Gerekli kütüphaneleri yüklemek için:
-
-```bash
-pip install -r requirements.txt
-```
-
-Modeli eğitmek ve test etmek için:
-
-```bash
-python main.py
-```
-
-Kendi el yazısı görsellerinde tahmin yapmak için:
-
-```bash
-python predict.py
-```
+1. **MLP Performansı:** Model, standart MNIST test seti üzerinde **%98.23** gibi yüksek bir başarı oranına ulaşmıştır. Eğitim doğruluğunun (%99.61) doğrulama doğruluğundan (%97.99) çok az yüksek olması, modelin ezber yapmadan genel kalıpları öğrenebildiğini göstermektedir.
+2. **Gerçek Hayat Verilerinde MLP Sınırlamaları:** 
+   - Kendi el yazımızla hazırladığımız veri setinde bazı rakamlarda (örneğin '1' ve '0') yaşanan tahmin sapmalarının temel sebebi, MLP mimarisinin uzamsal değişmezliğe (spatial invariance) sahip olmamasıdır.
+   - MNIST verileri piksel olarak tam merkeze oturtulmuş ve standart çizgi kalınlıklarına sahiptir. Kendi el yazımızdaki kişisel stil farklılıkları (çentikler, eğimler) ve piksellerin merkezden ufak kaymaları, piksel tabanlı çalışan MLP'nin farklı özellikler algılamasına yol açabilmektedir.
+   - Bu durum, görüntü işleme problemlerinde piksellerin konumundan ziyade kenar, köşe ve şekil özelliklerini öğrenebilen **Evrişimli Sinir Ağlarına (CNN)** neden ihtiyaç duyulduğunu deneysel olarak kanıtlamaktadır.
