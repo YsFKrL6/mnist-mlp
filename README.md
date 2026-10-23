@@ -1,7 +1,6 @@
-
 # MNIST Veri Seti ile MLP Tabanlı El Yazısı Rakam Tanıma
 
-Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-Layer Perceptron - MLP) mimarisi ile el yazısı rakamları sınıflandırmak ve eğitilen modelin gerçek hayattaki el yazısı görselleri (öğrenci numarası) üzerindeki başarısını değerlendirmek amacıyla geliştirilmiştir. Ödev isterlerine uygun olarak modelde CNN (Evrişimli Sinir Ağı) **kullanılmamıştır.**
+Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-Layer Perceptron - MLP) mimarisi ile el yazısı rakamları sınıflandırmak ve eğitilen modelin gerçek hayattaki el yazısı görselleri (öğrenci numarası) üzerindeki başarısını değerlendirmek amacıyla geliştirilmiştir. Ödevde istendiği için modelde CNN **kullanılmamıştır.**
 
 ## 1. Proje Yapısı
 
@@ -45,30 +44,32 @@ Eğitim sürecinde ağırlıklar `torch.manual_seed(42)` ile sabitlenmiştir. CP
 
 ![Training and Validation Metrics](accuracy_loss_metrics.png)
 
-## 4. Kendi El Yazısı Görsellerinin Değerlendirilmesi
+## 4. Kendi El Yazısı Görsellerimin Değerlendirilmesi
 
-Boş bir A4 kağıdına yazılan 11 haneli okul numarası görselleri kırılarak `custom_digits/` klasörüne eklenmiş, OpenCV yardımıyla ön işlemeden (Grayscale, Thresholding, 28x28 Resize) geçirilerek `predict.py` vasıtasıyla modele sunulmuştur.
+Boş bir A4 kağıdına yazdığım 11 haneli okul numaramın (**24120205064**) görselleri kırılarak `custom_digits/` klasörüne eklenmiş, OpenCV yardımıyla ön işlemeden (Grayscale, Thresholding, 28x28 Resize) geçirilerek `predict.py` vasıtasıyla modele sunulmuştur.
 
 ### Tahmin Sonuçları Tablosu:
 
-| Dosya Adı | Modelin Tahmini | Güven Skoru |
-| :--- | :---: | :---: |
-| `01.jpeg` | 2 | %100.00 |
-| `02.jpeg` | 4 | %100.00 |
-| `03.jpeg` | 7 | %94.88 |
-| `04.jpeg` | 2 | %90.53 |
-| `05.jpeg` | 4 | %94.77 |
-| `06.jpeg` | 2 | %99.99 |
-| `07.jpeg` | 9 | %99.86 |
-| `08.jpeg` | 5 | %100.00 |
-| `09.jpeg` | 9 | %99.93 |
-| `10.jpeg` | 6 | %100.00 |
-| `11.jpeg` | 4 | %100.00 |
+| Dosya Adı | Gerçek Rakam | Modelin Tahmini | Güven Skoru | Durum |
+| :--- | :---: | :---: | :---: | :---: |
+| `01.jpeg` | **2** | 2 | %100.00 | Başarılı |
+| `02.jpeg` | **4** | 4 | %100.00 | Başarılı |
+| `03.jpeg` | **1** | 7 | %94.88 | Başarısız |
+| `04.jpeg` | **2** | 2 | %90.53 | Başarılı |
+| `05.jpeg` | **0** | 4 | %94.77 | Başarısız |
+| `06.jpeg` | **2** | 2 | %99.99 | Başarılı |
+| `07.jpeg` | **0** | 9 | %99.86 | Başarısız |
+| `08.jpeg` | **5** | 5 | %100.00 | Başarılı |
+| `09.jpeg` | **0** | 9 | %99.93 | Başarısız |
+| `10.jpeg` | **6** | 6 | %100.00 | Başarılı |
+| `11.jpeg` | **4** | 4 | %100.00 | Başarılı |
+
+> **Genel Doğruluk Oranı:** 7 / 11 (%63.63)
 
 ## 5. Genel Değerlendirme ve Tartışma
 
 1. **MLP Performansı:** Model, standart MNIST test seti üzerinde **%98.23** gibi yüksek bir başarı oranına ulaşmıştır. Eğitim doğruluğunun (%99.61) doğrulama doğruluğundan (%97.99) çok az yüksek olması, modelin ezber yapmadan genel kalıpları öğrenebildiğini göstermektedir.
 2. **Gerçek Hayat Verilerinde MLP Sınırlamaları:** 
-   - Kendi el yazımızla hazırladığımız veri setinde bazı rakamlarda (örneğin '1' ve '0') yaşanan tahmin sapmalarının temel sebebi, MLP mimarisinin uzamsal değişmezliğe (spatial invariance) sahip olmamasıdır.
-   - MNIST verileri piksel olarak tam merkeze oturtulmuş ve standart çizgi kalınlıklarına sahiptir. Kendi el yazımızdaki kişisel stil farklılıkları (çentikler, eğimler) ve piksellerin merkezden ufak kaymaları, piksel tabanlı çalışan MLP'nin farklı özellikler algılamasına yol açabilmektedir.
+   - Kendi el yazımızla hazırladığımız veri setinde '1' ve '0' rakamlarında yaşanan tahmin sapmalarının temel sebebi, MLP mimarisinin uzamsal değişmezliğe (spatial invariance) sahip olmamasıdır.
+   - MNIST verileri piksel olarak tam merkeze oturtulmuş ve standart çizgi kalınlıklarına sahiptir. Kendi el yazımızdaki kişisel stil farklılıkları (örneğin '1' rakamındaki çentik veya '0' rakamındaki hafif eğim) ve piksellerin merkezden ufak kaymaları, piksel tabanlı çalışan MLP'nin farklı özellikler algılamasına yol açabilmektedir.
    - Bu durum, görüntü işleme problemlerinde piksellerin konumundan ziyade kenar, köşe ve şekil özelliklerini öğrenebilen **Evrişimli Sinir Ağlarına (CNN)** neden ihtiyaç duyulduğunu deneysel olarak kanıtlamaktadır.
