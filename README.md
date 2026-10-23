@@ -68,8 +68,8 @@ Boş bir A4 kağıdına yazdığım 11 haneli okul numaramın (**24120205064**) 
 
 ## 5. Genel Değerlendirme ve Tartışma
 
-1. **MLP Performansı:** Model, standart MNIST test seti üzerinde **%98.23** gibi yüksek bir başarı oranına ulaşmıştır. Eğitim doğruluğunun (%99.61) doğrulama doğruluğundan (%97.99) çok az yüksek olması, modelin ezber yapmadan genel kalıpları öğrenebildiğini göstermektedir.
+1. **MLP Performansı:** Eğitim doğruluğunun (%99.61), doğrulama doğruluğundan (%97.99) yüksek olması, modelin eğitim verilerinde daha başarılı olduğunu göstermektedir. Aradaki fark, bir miktar ezberleme (overfitting) ihtimaline işaret edebilir; ancak kesin bir sonuca varmak için eğitim sürecinin tamamı ve kayıp eğrileri birlikte değerlendirilmelidir.
 2. **Gerçek Hayat Verilerinde MLP Sınırlamaları:** 
    - Kendi el yazımızla hazırladığımız veri setinde '1' ve '0' rakamlarında yaşanan tahmin sapmalarının temel sebebi, MLP mimarisinin uzamsal değişmezliğe (spatial invariance) sahip olmamasıdır.
    - MNIST verileri piksel olarak tam merkeze oturtulmuş ve standart çizgi kalınlıklarına sahiptir. Kendi el yazımızdaki kişisel stil farklılıkları (örneğin '1' rakamındaki çentik veya '0' rakamındaki hafif eğim) ve piksellerin merkezden ufak kaymaları, piksel tabanlı çalışan MLP'nin farklı özellikler algılamasına yol açabilmektedir.
-   - Bu durum, görüntü işleme problemlerinde piksellerin konumundan ziyade kenar, köşe ve şekil özelliklerini öğrenebilen **Evrişimli Sinir Ağlarına (CNN)** neden ihtiyaç duyulduğunu deneysel olarak kanıtlamaktadır.
+   - Bu durum, görüntü işleme problemlerinde piksellerin konumundan ziyade kenar, köşe ve şekil özelliklerini öğrenebilen **Evrişimli Sinir Ağlarının (CNN)** olası avantajlarını göstermektedir
