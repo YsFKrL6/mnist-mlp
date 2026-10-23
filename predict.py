@@ -5,7 +5,7 @@ import torch.nn as nn
 from torchvision import transforms
 from PIL import Image
 
-# 1. Model Mimarisi 
+# 1. Model Mimarisi (main.py de ki model mimarisi ile AYNI olacak)
 class MLPModel(nn.Module):
     def __init__(self):
         super(MLPModel, self).__init__()
