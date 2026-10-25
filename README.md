@@ -11,15 +11,11 @@ Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-La
 ├── predict.py                    # Birinci modelle tahmin kodu
 ├── mlp_mnist_model.pth           # Birinci modelin eğitilmiş ağırlıkları
 ├── accuracy_loss_metrics.png     # Birinci deneyin eğitim grafikleri
-├── experiment2.py                # İkinci modelin eğitim ve değerlendirme kodu
-├── predict_exp2.py               # İkinci modelle tahmin kodu
 ├── mlp_mnist_model_2.pth         # İkinci modelin eğitilmiş ağırlıkları
 ├── accuracy_loss_metrics_2.png   # İkinci deneyin eğitim grafikleri
 ├── requirements.txt              # Gerekli kütüphaneler
 └── README.md                     # Proje raporu
 ```
-
-*Not: Bu listede yalnızca projende gerçekten bulunan dosyaları bırak.*
 
 ## 2. Veri Seti ve Ön İşleme
 
