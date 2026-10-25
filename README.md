@@ -207,35 +207,31 @@ Deney sonuçlarına göre ilk model, MNIST test verilerinde ve kendi el yazısı
 
 ## 8. Projeyi Çalıştırma
 
-Gerekli kütüphaneleri yüklemek için:
+### Gerekli Kütüphanelerin Yüklenmesi
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Birinci modeli eğitmek için:
+### Eğitilmiş Modeli Kullanma
 
-```bash
-python main.py
-```
-
-Birinci modelle tahmin yapmak için:
+Projede bulunan `mlp_mnist_model.pth` dosyası, önceden eğitilmiş modelin ağırlıklarını içerir. Modeli yeniden eğitmeden kendi el yazısı rakam görselleri üzerinde tahmin yapmak için aşağıdaki komut çalıştırılabilir:
 
 ```bash
 python predict.py
 ```
 
-İkinci modeli eğitmek için:
+Tahmin işleminin çalışabilmesi için `predict.py`, `mlp_mnist_model.pth` ve `custom_digits/` klasörünün gerekli dosyalarla birlikte mevcut olması gerekir.
+
+### Modeli Yeniden Eğitme (İsteğe Bağlı)
+
+Modeli sıfırdan eğitmek ve ağırlık dosyasını yeniden oluşturmak için:
 
 ```bash
-python experiment2.py
+python main.py
 ```
 
-İkinci modelle tahmin yapmak için:
-
-```bash
-python predict_exp2.py
-```
+Bu adım, önceden eğitilmiş modelle tahmin yapmak için gerekli değildir.
 
 Bu komutların çalışabilmesi için ilgili Python dosyalarının proje klasöründe bulunması gerekir.
 
