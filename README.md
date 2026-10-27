@@ -10,9 +10,9 @@ Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-La
 ├── main.py                       # Birinci modelin eğitim ve değerlendirme kodu
 ├── predict.py                    # Birinci modelle tahmin kodu
 ├── mlp_mnist_model.pth           # Birinci modelin eğitilmiş ağırlıkları
-├── accuracy_loss_metrics.png     # Birinci deneyin eğitim grafikleri
+├── accuracy_loss_metrics.png     # Birinci modelin eğitim grafikleri
 ├── mlp_mnist_model_2.pth         # İkinci modelin eğitilmiş ağırlıkları
-├── accuracy_loss_metrics_2.png   # İkinci deneyin eğitim grafikleri
+├── accuracy_loss_metrics_2.png   # İkinci modelin eğitim grafikleri
 ├── requirements.txt              # Gerekli kütüphaneler
 └── README.md                     # Proje raporu
 ```
@@ -38,7 +38,7 @@ Görüntüler tensör biçimine dönüştürülmüş ve normalize edilmiştir. N
 transforms.Normalize((0.1307,), (0.3081,))
 ```
 
-Eğitim verileri modelin öğrenmesi, doğrulama verileri eğitim sürecindeki performansın izlenmesi ve test verileri nihai başarının değerlendirilmesi için kullanılmıştır. Test verileri model geliştirme ve hiperparametre seçimi için kullanılmamalıdır.
+Eğitim verileri modelin öğrenmesi, doğrulama verileri eğitim sürecindeki performansın izlenmesi ve test verileri nihai başarının değerlendirilmesi için kullanılmıştır. Test verileri model eğitimi ve doğrulama aşamasında kullanılmamıştır.
 
 ## 3. Model Mimarileri ve Hiperparametreler
 
@@ -127,7 +127,7 @@ Bu deneylerde ilk model, MNIST test doğruluğu açısından daha başarılı ol
 
 ## 6. Kendi El Yazısı Görsellerimin Değerlendirilmesi
 
-Modeller, kendi el yazımla yazdığım 11 haneli öğrenci numaramın rakam görselleri üzerinde test edilmiştir. Görseller yeniden hazırlanarak MNIST görüntülerine mümkün olduğunca benzer hâle getirilmeye çalışılmıştır.
+Modeller, kendi el yazımla yazdığım 11 haneli öğrenci numaramın rakam görselleri üzerinde test edilmiştir. Görseller MNIST görüntülerine mümkün olduğunca benzer hâle getirilmeye çalışılmıştır.
 
 **Gerçek öğrenci numarası:** `24120205064`
 
@@ -177,7 +177,7 @@ Modelin oluşturduğu tahmin:
 
 **Doğru tahmin:** 4/11 — **%36.36**
 
-*Not: Güven skoru, modelin seçtiği sınıfa ilişkin tahmin olasılığını gösterir; tahminin doğru olduğunu garanti etmez. Yüzde değerleri yuvarlanmıştır.*
+*Not: Güven skoru, modelin seçtiği sınıfa ilişkin tahmin olasılığını gösterir; tahminin doğru olduğunu garanti etmez.*
 
 ## 7. Genel Değerlendirme ve Tartışma
 
@@ -185,7 +185,7 @@ Modelin oluşturduğu tahmin:
 
 İlk model %98.23, ikinci model ise %97.42 test doğruluğu elde etmiştir. Her iki model de MNIST veri setindeki rakamları başarılı biçimde sınıflandırmış, ancak ilk model daha yüksek test doğruluğuna ulaşmıştır.
 
-### Kendi El Yazısı Görsellerindeki Performans
+### Kendi El Yazısı Görsellerimdeki Performans
 
 Kendi el yazımla hazırladığım 11 rakam görselinde ilk model %90.91, ikinci model ise %36.36 doğruluk elde etmiştir. Bu sonuçlar, aynı giriş görüntülerinde iki modelin performanslarının belirgin biçimde farklılaşabildiğini göstermektedir.
 
@@ -199,7 +199,6 @@ MNIST test doğruluğunun el yazısı görsellerindeki doğrulukla aynı olmamas
 - Rakamın görüntü içindeki boyutu ve konumu
 - Görüntülerin kırpılması ve ortalanması
 - Rakam çizgilerinin kalınlığı
-- Arka plan, kontrast ve normalizasyon farklılıkları
 
 Bu durum, **distribution shift (veri dağılımı kayması)** olarak adlandırılan probleme örnek oluşturabilir. Görsellerin MNIST'e uygun biçimde hazırlanması sonuçları iyileştirebilir; ancak modelin gerçek el yazısı üzerindeki başarısını garanti etmez.
 
@@ -239,7 +238,7 @@ python main.py
 
 Bu işlem, önceden eğitilmiş ağırlıkları kullanarak tahmin yapmak için gerekli değildir.
 
-İkinci modelin yeniden eğitilebilmesi veya onunla tahmin yapılabilmesi için ikinci modelin mimarisini oluşturan ve `mlp_mnist_model_2.pth` dosyasını yükleyen uygun Python kodları bulunmalıdır. Bu kodlar mevcut değilse `.pth` dosyası tek başına modeli yeniden eğitmek veya tahmin yapmak için yeterli değildir.
+İkinci modelin yeniden eğitilebilmesi veya onunla tahmin yapılabilmesi için ikinci modelin mimarisini oluşturan ve `mlp_mnist_model_2.pth` dosyasını yükleyen uygun Python kodları bulunmalıdır.
 
 ## 9. Kullanılan Kütüphaneler
 
@@ -248,5 +247,3 @@ Bu işlem, önceden eğitilmiş ağırlıkları kullanarak tahmin yapmak için g
 - NumPy
 - Matplotlib
 - Pillow
-
-Kütüphanelerin sürümleri `requirements.txt` dosyasında belirtilmiştir.
