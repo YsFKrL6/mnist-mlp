@@ -109,7 +109,7 @@ Her iki deneyde kullanılan temel hiperparametreler:
 | Eğitim doğruluğu | %99.61 | %99.48 |
 | Doğrulama doğruluğu | %97.99 | %97.20 |
 | Test doğruluğu (MNIST) | %98.23 | %97.42 |
-| Kendi el yazısı doğruluğu | %90.91 (10/11) | %45.45 (5/11) |
+| Kendi el yazısı rakamlarımın doğruluğu | %90.91 (10/11) | %45.45 (5/11) |
 | Eğitim süresi | 128.10 sn | 146.10 sn |
 
 İlk model, MNIST test doğruluğunda ikinci modelden **0.81 yüzde puan** daha yüksek sonuç elde etmiş, kendi el yazısı görsellerimiz üzerinde de daha başarılı olmuştur.
