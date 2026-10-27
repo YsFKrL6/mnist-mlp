@@ -222,7 +222,7 @@ pip install -r requirements.txt
 
 ### Birinci Model ile Tahmin Yapma
 
-Eğitilmiş ağırlıkları yeniden kullanarak kendi el yazısı rakam görsellerinde tahmin yapmak için:
+Eğitilmiş ağırlıkları yeniden kullanarak kendi el yazısı rakam görsellerimde tahmin yapmak için:
 
 ```bash
 python predict.py
@@ -238,7 +238,22 @@ Modeli sıfırdan eğitmek ve ağırlık dosyasını yeniden oluşturmak için:
 python main.py
 ```
 
-İkinci modelin eğitilmiş ağırlıkları `mlp_mnist_model_2.pth` dosyasında bulunmaktadır. 
+### İkinci Model ile Tahmin Yapma
+
+Eğitilmiş ağırlıkları yeniden kullanarak kendi el yazısı rakam görsellerimde tahmin yapmak için:
+
+```bash
+python predict_2.py
+```
+Tahmin işleminin çalışabilmesi için `predict_2.py`, `mlp_mnist_model_2.pth` ve `custom_digits/` klasörünün gerekli dosyalarla birlikte mevcut olması gerekir.
+
+### İkinci Modeli Yeniden Eğitme
+
+Modeli sıfırdan eğitmek ve ağırlık dosyasını yeniden oluşturmak için:
+
+```bash
+python main_2.py
+```
 
 ## 9. Kullanılan Kütüphaneler
 
