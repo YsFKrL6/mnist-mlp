@@ -184,7 +184,7 @@ Modelin oluşturduğu tahmin:
 
 Kendi el yazımla hazırladığım 11 rakam görselinde ilk model %90.91 (10/11), ikinci model ise %45.45 (5/11) doğruluk elde etmiştir.
 
-MNIST test kümesinde iki model arasındaki doğruluk farkı %0.81 puanken, kendi el yazısı görsellerimdeki fark %54.55 puandır. Ancak kendi el yazımın değerlendirmesi yalnızca 11 görsele dayandığı için bu sonuçlar tüm el yazısı örneklerine genellenmemelidir.
+MNIST test kümesinde iki model arasındaki doğruluk farkı %0.81 puanken, kendi el yazısı görsellerimdeki fark %45.46 puandır. Ancak kendi el yazımın değerlendirmesi yalnızca 11 görsele dayandığı için bu sonuçlar tüm el yazısı örneklerine genellenmemelidir.
 
 Sonuçlar, model mimarisinin ve eğitim sürecinin farklı veri örnekleri üzerindeki performansı etkileyebildiğini göstermektedir. Bununla birlikte, iki deney arasındaki farkın yalnızca nöron sayısından kaynaklandığını söylemek için daha fazla veri ve kontrollü deney gereklidir.
 
