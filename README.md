@@ -9,6 +9,8 @@ Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-La
 ├── custom_digits/               # Kendi el yazımla hazırladığım rakam görselleri (01.jpeg - 11.jpeg)
 ├── main.py                      # Birinci modelin eğitim ve değerlendirme kodu
 ├── predict.py                   # Birinci modelle tahmin kodu
+├── main_2.py                    # ikinci modelin eğitim ve değerlendirme kodu
+├── predict_2.py                 # İkinci modelle tahmin kodu
 ├── mlp_mnist_model.pth          # Birinci modelin eğitilmiş ağırlıkları (256-128)
 ├── accuracy_loss_metrics.png    # Birinci modelin eğitim grafikleri
 ├── mlp_mnist_model_2.pth        # İkinci modelin eğitilmiş ağırlıkları (128-64)
