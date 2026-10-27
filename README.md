@@ -188,11 +188,10 @@ MNIST test kümesinde iki model arasındaki doğruluk farkı %0.81 puanken, kend
 
 Sonuçlar, model mimarisinin ve eğitim sürecinin farklı veri örnekleri üzerindeki performansı etkileyebildiğini göstermektedir. Bununla birlikte, iki deney arasındaki farkın yalnızca nöron sayısından kaynaklandığını söylemek için daha fazla veri ve kontrollü deney gereklidir.
 
-### Distribution Shift ve Ön İşlemenin Etkisi
+### Distribution Shift 
 
 MNIST veri seti ile kendi el yazısı görsellerim arasındaki biçim, çizgi kalınlığı ve konum farklılıkları distribution shift (veri dağılımı kayması) durumuna örnek oluşturmaktadır. Modellerin standart MNIST veri setindeki yüksek başarımının kendi görsellerimde birebir tekrarlanmaması bu durumla açıklanabilir.
 
-Görsellerin MNIST biçim standartlarına uygun çizilmesi ve OTSU eşikleme, gri tonlama gibi ön işleme adımlarının uygulanması bu kaymanın etkisini minimize etmiş ve ilk modelde %90.91 başarıyı getirmiştir. Ancak değerlendirme yalnızca 11 rakam görseline dayandığı için, genel performans tespiti adına daha fazla veriyle test yapılması gerekmektedir.
 
 ### Aşırı Öğrenme (Overfitting)
 
