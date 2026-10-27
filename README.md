@@ -1,6 +1,6 @@
 # MNIST Veri Seti ile MLP Tabanlı El Yazısı Rakam Tanıma
 
-Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-Layer Perceptron - MLP) mimarisi ile el yazısı rakamları sınıflandırmak ve eğitilen modellerin performanslarını karşılaştırmak amacıyla geliştirilmiştir. Ayrıca modeller, kendi el yazımla yazdığım öğrenci numaramın rakam görselleri üzerinde test edilmiştir. Ödev gereksinimi doğrultusunda **CNN kullanılmamıştır.**
+Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-Layer Perceptron - MLP) mimarisi ile el yazısı rakamlarını sınıflandırmak ve farklı model yapılandırmalarının performanslarını karşılaştırmak amacıyla geliştirilmiştir. Ayrıca eğitilen modeller, kendi el yazımla yazdığım öğrenci numaramın rakam görselleri üzerinde test edilmiştir. Ödev gereksinimi doğrultusunda **CNN kullanılmamıştır.**
 
 ## 1. Proje Yapısı
 
@@ -16,6 +16,8 @@ Bu proje, MNIST veri kümesini kullanarak Çok Katmanlı Algılayıcı (Multi-La
 ├── requirements.txt              # Gerekli kütüphaneler
 └── README.md                     # Proje raporu
 ```
+
+İkinci modelin ağırlıkları ve grafik dosyaları projede saklanmaktadır. İkinci modeli yeniden eğitmek veya tahminlerde kullanmak için ilgili model mimarisini ve yükleme kodunu içeren Python dosyaları da gerekebilir.
 
 ## 2. Veri Seti ve Ön İşleme
 
@@ -36,7 +38,7 @@ Görüntüler tensör biçimine dönüştürülmüş ve normalize edilmiştir. N
 transforms.Normalize((0.1307,), (0.3081,))
 ```
 
-Eğitim verileri modelin öğrenmesi, doğrulama verileri eğitim sürecindeki performansın izlenmesi ve test verileri nihai başarının değerlendirilmesi için kullanılmıştır.
+Eğitim verileri modelin öğrenmesi, doğrulama verileri eğitim sürecindeki performansın izlenmesi ve test verileri nihai başarının değerlendirilmesi için kullanılmıştır. Test verileri model geliştirme ve hiperparametre seçimi için kullanılmamalıdır.
 
 ## 3. Model Mimarileri ve Hiperparametreler
 
@@ -119,61 +121,61 @@ Her iki deneyde kullanılan temel hiperparametreler:
 
 İlk model, test doğruluğunda ikinci modelden 0.81 yüzde puan daha yüksek sonuç elde etmiştir. Ayrıca ölçülen eğitim süresi daha kısadır.
 
-İkinci model daha az nöron kullanmasına rağmen daha uzun sürede eğitilmiştir. Bu durum, model boyutunun tek başına eğitim süresini belirlemediğini gösterir. Bilgisayarın işlem yükü ve ölçüm koşulları da süreyi etkileyebilir.
+İkinci model daha az nöron kullanmasına rağmen daha uzun sürede eğitilmiştir. Bu durum, model boyutunun tek başına eğitim süresini belirlemediğini gösterir. İşlemci yükü ve ölçüm koşulları da eğitim süresini etkileyebilir.
 
-Bu deneylerde ilk model, test doğruluğu açısından daha başarılı olmuştur.
+Bu deneylerde ilk model, MNIST test doğruluğu açısından daha başarılı olmuştur.
 
 ## 6. Kendi El Yazısı Görsellerimin Değerlendirilmesi
 
-Modeller, kendi el yazımla yazdığım 11 haneli öğrenci numaramın rakam görselleri üzerinde test edilmiştir.
+Modeller, kendi el yazımla yazdığım 11 haneli öğrenci numaramın rakam görselleri üzerinde test edilmiştir. Görseller yeniden hazırlanarak MNIST görüntülerine mümkün olduğunca benzer hâle getirilmeye çalışılmıştır.
 
 **Gerçek öğrenci numarası:** `24120205064`
 
 Rakamlar ayrı görsellere ayrılmış ve `custom_digits/` klasörüne yerleştirilmiştir. Görseller, tahmin kodunda kullanılan ön işleme adımlarından geçirildikten sonra modellere verilmiştir.
 
-### Deney 1 Tahmin Sonuçları
+### Deney 1 Tahmin Sonuçları — 256–128 MLP
 
 Modelin oluşturduğu tahmin:
 
-`24724295964`
-
-| Dosya adı | Gerçek rakam | Tahmin | Güven skoru | Sonuç |
-| :--- | :---: | :---: | :---: | :--- |
-| `01.jpeg` | 2 | 2 | %100.00 | Doğru |
-| `02.jpeg` | 4 | 4 | %100.00 | Doğru |
-| `03.jpeg` | 1 | 7 | %94.88 | Yanlış |
-| `04.jpeg` | 2 | 2 | %90.53 | Doğru |
-| `05.jpeg` | 0 | 4 | %94.77 | Yanlış |
-| `06.jpeg` | 2 | 2 | %99.99 | Doğru |
-| `07.jpeg` | 0 | 9 | %99.86 | Yanlış |
-| `08.jpeg` | 5 | 5 | %100.00 | Doğru |
-| `09.jpeg` | 0 | 9 | %99.93 | Yanlış |
-| `10.jpeg` | 6 | 6 | %100.00 | Doğru |
-| `11.jpeg` | 4 | 4 | %100.00 | Doğru |
-
-**Doğru tahmin:** 7/11 — **%63.64**
-
-### Deney 2 Tahmin Sonuçları
-
-Modelin oluşturduğu tahmin:
-
-`24974295964`
+`24120205062`
 
 | Dosya adı | Gerçek rakam | Tahmin | Güven skoru | Sonuç |
 | :--- | :---: | :---: | :---: | :--- |
 | `01.jpeg` | 2 | 2 | %99.99 | Doğru |
-| `02.jpeg` | 4 | 4 | %100.00 | Doğru |
-| `03.jpeg` | 1 | 9 | %99.14 | Yanlış |
-| `04.jpeg` | 2 | 7 | %90.52 | Yanlış |
-| `05.jpeg` | 0 | 4 | %96.49 | Yanlış |
-| `06.jpeg` | 2 | 2 | %99.98 | Doğru |
-| `07.jpeg` | 0 | 9 | %99.97 | Yanlış |
+| `02.jpeg` | 4 | 4 | %99.02 | Doğru |
+| `03.jpeg` | 1 | 1 | %95.89 | Doğru |
+| `04.jpeg` | 2 | 2 | %92.89 | Doğru |
+| `05.jpeg` | 0 | 0 | %97.90 | Doğru |
+| `06.jpeg` | 2 | 2 | %100.00 | Doğru |
+| `07.jpeg` | 0 | 0 | %100.00 | Doğru |
 | `08.jpeg` | 5 | 5 | %100.00 | Doğru |
-| `09.jpeg` | 0 | 9 | %99.92 | Yanlış |
-| `10.jpeg` | 6 | 6 | %100.00 | Doğru |
-| `11.jpeg` | 4 | 4 | %99.95 | Doğru |
+| `09.jpeg` | 0 | 0 | %100.00 | Doğru |
+| `10.jpeg` | 6 | 6 | %90.00 | Doğru |
+| `11.jpeg` | 4 | 2 | %43.47 | Yanlış |
 
-**Doğru tahmin:** 6/11 — **%54.55**
+**Doğru tahmin:** 10/11 — **%90.91**
+
+### Deney 2 Tahmin Sonuçları — 128–64 MLP
+
+Modelin oluşturduğu tahmin:
+
+`16510105066`
+
+| Dosya adı | Gerçek rakam | Tahmin | Güven skoru | Sonuç |
+| :--- | :---: | :---: | :---: | :--- |
+| `01.jpeg` | 2 | 1 | %50.68 | Yanlış |
+| `02.jpeg` | 4 | 6 | %46.86 | Yanlış |
+| `03.jpeg` | 1 | 5 | %61.89 | Yanlış |
+| `04.jpeg` | 2 | 1 | %62.34 | Yanlış |
+| `05.jpeg` | 0 | 0 | %81.23 | Doğru |
+| `06.jpeg` | 2 | 1 | %75.76 | Yanlış |
+| `07.jpeg` | 0 | 0 | %99.99 | Doğru |
+| `08.jpeg` | 5 | 5 | %99.97 | Doğru |
+| `09.jpeg` | 0 | 0 | %99.05 | Doğru |
+| `10.jpeg` | 6 | 6 | %97.56 | Doğru |
+| `11.jpeg` | 4 | 6 | %71.71 | Yanlış |
+
+**Doğru tahmin:** 4/11 — **%36.36**
 
 *Not: Güven skoru, modelin seçtiği sınıfa ilişkin tahmin olasılığını gösterir; tahminin doğru olduğunu garanti etmez. Yüzde değerleri yuvarlanmıştır.*
 
@@ -181,29 +183,33 @@ Modelin oluşturduğu tahmin:
 
 ### MNIST Veri Setindeki Performans
 
-İlk model %98.23, ikinci model ise %97.42 test doğruluğu elde etmiştir. Bu sonuçlar, her iki MLP modelinin de MNIST veri setindeki rakamları başarılı bir şekilde sınıflandırabildiğini göstermektedir.
+İlk model %98.23, ikinci model ise %97.42 test doğruluğu elde etmiştir. Her iki model de MNIST veri setindeki rakamları başarılı biçimde sınıflandırmış, ancak ilk model daha yüksek test doğruluğuna ulaşmıştır.
 
 ### Kendi El Yazısı Görsellerindeki Performans
 
-Kendi el yazımla hazırladığım görüntülerde ilk model %63.64, ikinci model ise %54.55 rakam bazlı doğruluk elde etmiştir. Bu oranların MNIST test sonuçlarından düşük olması, eğitim verileri ile kendi görüntülerim arasındaki farklılıklarla ilişkili olabilir.
+Kendi el yazımla hazırladığım 11 rakam görselinde ilk model %90.91, ikinci model ise %36.36 doğruluk elde etmiştir. Bu sonuçlar, aynı giriş görüntülerinde iki modelin performanslarının belirgin biçimde farklılaşabildiğini göstermektedir.
 
-Olası nedenler şunlardır:
+İlk model hem MNIST test verilerinde hem de kendi el yazısı görsellerimde daha başarılı olmuştur. Bununla birlikte, el yazısı testinin yalnızca 11 rakamdan oluşması nedeniyle bu sonuçları tüm el yazısı görüntülerine genellemek doğru değildir.
+
+### Distribution Shift ve Genelleme
+
+MNIST test doğruluğunun el yazısı görsellerindeki doğrulukla aynı olmaması, eğitim verisi ile gerçek kullanıcı görüntüleri arasındaki farklılıklarla ilişkili olabilir. Bu farklılıklar şu etkenlerden kaynaklanabilir:
 
 - Rakamların yazım biçimi ve eğimi
-- Görüntülerin kırpılması ve rakamın görüntü içindeki konumu
-- Rakamların kalınlığı ve boyutu
-- Görüntülerin arka planı ve ön işleme adımları
-- MNIST görüntüleri ile kendi el yazısı görüntülerim arasındaki dağılım farklılıkları
+- Rakamın görüntü içindeki boyutu ve konumu
+- Görüntülerin kırpılması ve ortalanması
+- Rakam çizgilerinin kalınlığı
+- Arka plan, kontrast ve normalizasyon farklılıkları
 
-Bazı rakamların yüksek güven skoruyla yanlış tahmin edilmesi, modelin kendisine verilen görüntüyü belirli bir sınıfa güçlü biçimde benzetebildiğini ancak bu tahminin her zaman doğru olmadığını göstermektedir.
+Bu durum, **distribution shift (veri dağılımı kayması)** olarak adlandırılan probleme örnek oluşturabilir. Görsellerin MNIST'e uygun biçimde hazırlanması sonuçları iyileştirebilir; ancak modelin gerçek el yazısı üzerindeki başarısını garanti etmez.
 
-### Aşırı Öğrenme (Overfitting)
+### Güven Skorlarının Yorumlanması
 
-İkinci deneyde doğrulama kaybı altıncı epoch'ta en düşük değerine ulaşmıştır. Sonraki epoch'larda eğitim kaybı genel olarak azalmaya devam ederken doğrulama kaybının yükselmesi, aşırı öğrenme belirtisi olabilir. Bununla birlikte, yalnızca bu gözlemle kesin bir sonuca varmak yerine eğitim ve doğrulama eğrilerinin birlikte değerlendirilmesi gerekir.
+İkinci modelin bazı yanlış tahminlerinde de görece yüksek güven skorları üretmesi, modelin tahmin olasılığının her zaman doğru sınıflandırma anlamına gelmediğini göstermektedir. Güven skorları modelin çıktısını yorumlamak için yararlıdır, ancak tek başına performans ölçütü olarak kullanılmamalıdır.
 
 ### Sonuç
 
-Deney sonuçlarına göre ilk model, MNIST test verilerinde ve kendi el yazısı görüntülerimde ikinci modelden daha başarılı olmuştur. Bu çalışma, gizli katman boyutlarının model performansını etkilediğini ve MNIST üzerindeki yüksek başarının gerçek el yazısı görüntülerinde aynı başarıyı garanti etmediğini göstermiştir.
+Deney sonuçlarına göre 256–128 mimarisine sahip ilk model, hem MNIST test verilerinde hem de kendi el yazısı görüntülerimde 128–64 mimarisine sahip ikinci modelden daha başarılı olmuştur. Bu çalışma, gizli katman boyutlarının model performansını etkileyebildiğini ve MNIST üzerindeki yüksek doğruluğun farklı el yazısı görüntülerinde aynı başarıyı garanti etmediğini göstermiştir.
 
 ## 8. Projeyi Çalıştırma
 
@@ -213,9 +219,9 @@ Deney sonuçlarına göre ilk model, MNIST test verilerinde ve kendi el yazısı
 pip install -r requirements.txt
 ```
 
-### Eğitilmiş Modeli Kullanma
+### Birinci Model ile Tahmin Yapma
 
-Projede bulunan `mlp_mnist_model.pth` dosyası, önceden eğitilmiş modelin ağırlıklarını içerir. Modeli yeniden eğitmeden kendi el yazısı rakam görselleri üzerinde tahmin yapmak için aşağıdaki komut çalıştırılabilir:
+Eğitilmiş ağırlıkları yeniden kullanarak kendi el yazısı rakam görsellerinde tahmin yapmak için:
 
 ```bash
 python predict.py
@@ -223,7 +229,7 @@ python predict.py
 
 Tahmin işleminin çalışabilmesi için `predict.py`, `mlp_mnist_model.pth` ve `custom_digits/` klasörünün gerekli dosyalarla birlikte mevcut olması gerekir.
 
-### Modeli Yeniden Eğitme (İsteğe Bağlı)
+### Birinci Modeli Yeniden Eğitme
 
 Modeli sıfırdan eğitmek ve ağırlık dosyasını yeniden oluşturmak için:
 
@@ -231,9 +237,9 @@ Modeli sıfırdan eğitmek ve ağırlık dosyasını yeniden oluşturmak için:
 python main.py
 ```
 
-Bu adım, önceden eğitilmiş modelle tahmin yapmak için gerekli değildir.
+Bu işlem, önceden eğitilmiş ağırlıkları kullanarak tahmin yapmak için gerekli değildir.
 
-Bu komutların çalışabilmesi için ilgili Python dosyalarının proje klasöründe bulunması gerekir.
+İkinci modelin yeniden eğitilebilmesi veya onunla tahmin yapılabilmesi için ikinci modelin mimarisini oluşturan ve `mlp_mnist_model_2.pth` dosyasını yükleyen uygun Python kodları bulunmalıdır. Bu kodlar mevcut değilse `.pth` dosyası tek başına modeli yeniden eğitmek veya tahmin yapmak için yeterli değildir.
 
 ## 9. Kullanılan Kütüphaneler
 
