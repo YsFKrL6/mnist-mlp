@@ -175,7 +175,7 @@ Modelin oluşturduğu tahmin:
 | `10.jpeg` | 6 | 6 | %97.56 | Doğru |
 | `11.jpeg` | 4 | 6 | %71.71 | Yanlış |
 
-**Doğru tahmin:** 4/11 — **%36.36**
+**Doğru tahmin:** 5/11 — **%45.45**
 
 *Not: Güven skoru, modelin seçtiği sınıfa ilişkin tahmin olasılığını gösterir; tahminin doğru olduğunu garanti etmez.*
 
