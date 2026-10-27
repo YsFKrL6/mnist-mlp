@@ -190,9 +190,9 @@ Sonuçlar, model mimarisinin ve eğitim sürecinin farklı veri örnekleri üzer
 
 ### Distribution Shift ve Ön İşlemenin Etkisi
 
-MNIST görüntüleri belirli boyut, konum ve biçim özelliklerine sahiptir. Kendi el yazısı görsellerim ise aynı ön işleme adımları uygulansa bile MNIST ile tamamen aynı veri dağılımına sahip olmayabilir. Bu farklılık, *distribution shift* (veri dağılımı kayması) olarak adlandırılır.
+MNIST veri seti ile kendi el yazısı görsellerim arasındaki biçim, çizgi kalınlığı ve konum farklılıkları distribution shift (veri dağılımı kayması) durumuna örnek oluşturmaktadır. Modellerin standart MNIST veri setindeki yüksek başarımının kendi görsellerimde birebir tekrarlanmaması bu durumla açıklanabilir.
 
-MNIST veri seti ile kendi el yazısı görsellerim arasındaki farklılıklar, modellerin tahmin performansını etkilemiştir. İlk model kendi el yazısı görsellerimde %90.91 doğruluk elde ederken, ikinci model %45.45 doğruluk elde etmiştir. Bu sonuçlar, modellerin standart MNIST veri setindeki başarılarının kendi el yazısı örneklerime aynı düzeyde yansımayabileceğini göstermektedir. Bu durum, veri dağılımı kayması (distribution shift) ve modellerin farklı el yazısı biçimlerine genelleme yeteneğiyle ilişkili olabilir. Ancak değerlendirme yalnızca 11 görsele dayandığından, daha genel sonuçlara ulaşmak için daha fazla örnek üzerinde test yapılması gerekmektedir.
+Görsellerin MNIST biçim standartlarına uygun çizilmesi ve OTSU eşikleme, gri tonlama gibi ön işleme adımlarının uygulanması bu kaymanın etkisini minimize etmiş ve ilk modelde %90.91 başarıyı getirmiştir. Ancak değerlendirme yalnızca 11 rakam görseline dayandığı için, genel performans tespiti adına daha fazla veriyle test yapılması gerekmektedir.
 
 ### Aşırı Öğrenme (Overfitting)
 
