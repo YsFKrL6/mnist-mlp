@@ -190,9 +190,9 @@ Sonuçlar, model mimarisinin ve eğitim sürecinin farklı veri örnekleri üzer
 
 ### Distribution Shift ve Ön İşlemenin Etkisi
 
-MNIST görüntüleri belirli boyut, konum ve biçim özelliklerine sahiptir. Kendi el yazısı görselleri ise aynı ön işleme adımları uygulansa bile MNIST ile tamamen aynı veri dağılımına sahip olmayabilir. Bu farklılık, *distribution shift* (veri dağılımı kayması) olarak adlandırılır.
+MNIST görüntüleri belirli boyut, konum ve biçim özelliklerine sahiptir. Kendi el yazısı görsellerim ise aynı ön işleme adımları uygulansa bile MNIST ile tamamen aynı veri dağılımına sahip olmayabilir. Bu farklılık, *distribution shift* (veri dağılımı kayması) olarak adlandırılır.
 
-Görsellerin MNIST örneklerine daha yakın biçimde hazırlanmasıyla ilk modelin kendi el yazısı görsellerindeki doğruluğu önceki denemedeki %63.64 seviyesinden %90.91'e yükselmiştir. Bu sonuç, görüntülerin hazırlanma biçiminin ve ön işlemenin tahmin performansını önemli ölçüde etkileyebildiğini göstermektedir. Bununla birlikte, değişimin tamamını tek bir ön işleme adımına bağlamak mümkün değildir.
+MNIST veri seti ile kendi el yazısı görsellerim arasındaki farklılıklar, modellerin tahmin performansını etkilemiştir. İlk model kendi el yazısı görsellerimde %90.91 doğruluk elde ederken, ikinci model %45.45 doğruluk elde etmiştir. Bu sonuçlar, modellerin standart MNIST veri setindeki başarılarının kendi el yazısı örneklerime aynı düzeyde yansımayabileceğini göstermektedir. Bu durum, veri dağılımı kayması (distribution shift) ve modellerin farklı el yazısı biçimlerine genelleme yeteneğiyle ilişkili olabilir. Ancak değerlendirme yalnızca 11 görsele dayandığından, daha genel sonuçlara ulaşmak için daha fazla örnek üzerinde test yapılması gerekmektedir.
 
 ### Aşırı Öğrenme (Overfitting)
 
@@ -210,7 +210,7 @@ Bu durum, modelin yüksek güvenle tahminde bulunmasının her zaman doğru sonu
 
 Deney sonuçlarına göre 256-128 mimarisine sahip ilk model, hem MNIST test verilerinde hem de kendi el yazısı görsellerimde 128-64 mimarisine sahip ikinci modelden daha başarılı olmuştur.
 
-Çalışma kapsamında MLP mimarisiyle rakam sınıflandırması yapılmış, farklı gizli katman boyutları karşılaştırılmış ve standart veri kümesindeki başarının kendi el yazısı görsellerindeki başarıyla her zaman aynı olmayabileceği gözlemlenmiştir.
+Çalışma kapsamında MLP mimarisiyle rakam sınıflandırması yapılmış, farklı gizli katman boyutları karşılaştırılmış ve standart veri kümesindeki başarının kendi el yazısı görsellerimdeki başarıyla her zaman aynı olmayabileceği gözlemlenmiştir.
 
 ## 8. Projeyi Çalıştırma
 
