@@ -178,11 +178,11 @@ Modelin oluşturduğu tahmin:
 
 İlk model %98.23, ikinci model ise %97.42 test doğruluğu elde etmiştir. Her iki model de MNIST test kümesindeki rakamları başarılı biçimde sınıflandırmış, daha geniş gizli katman kapasitesine sahip ilk model daha yüksek test doğruluğuna ulaşmıştır.
 
-### Kendi El Yazısı Görsellerimdeki Performans ve Genelleme (Generalization)
+### Kendi El Yazısı Görsellerimdeki Performans ve Genelleme 
 
-Kendi el yazımla hazırladığım 11 rakam görselinde ilk model %90.91 (10/11), ikinci model ise %36.36 (4/11) doğruluk elde etmiştir.
+Kendi el yazımla hazırladığım 11 rakam görselinde ilk model %90.91 (10/11), ikinci model ise %45.45 (5/11) doğruluk elde etmiştir.
 
-MNIST test kümesinde iki model arasındaki doğruluk farkı 0.81 yüzde puanken, kendi el yazısı görsellerindeki fark 54.55 yüzde puandır. Ancak kendi el yazısı değerlendirmesi yalnızca 11 görsele dayandığı için bu sonuçlar tüm el yazısı örneklerine genellenmemelidir.
+MNIST test kümesinde iki model arasındaki doğruluk farkı %0.81 puanken, kendi el yazısı görsellerimdeki fark %54.55 puandır. Ancak kendi el yazımın değerlendirmesi yalnızca 11 görsele dayandığı için bu sonuçlar tüm el yazısı örneklerine genellenmemelidir.
 
 Sonuçlar, model mimarisinin ve eğitim sürecinin farklı veri örnekleri üzerindeki performansı etkileyebildiğini göstermektedir. Bununla birlikte, iki deney arasındaki farkın yalnızca nöron sayısından kaynaklandığını söylemek için daha fazla veri ve kontrollü deney gereklidir.
 
@@ -236,9 +236,7 @@ Modeli sıfırdan eğitmek ve ağırlık dosyasını yeniden oluşturmak için:
 python main.py
 ```
 
-İkinci modelin eğitilmiş ağırlıkları `mlp_mnist_model_2.pth` dosyasında bulunmaktadır. İkinci modelle tahmin yapmak için yalnızca katman yapısını değiştirmek yeterli olmayabilir; model mimarisinin yanında, ağırlıkları yükleyen kodun ve görüntü ön işleme adımlarının da ikinci deneyle uyumlu olması gerekir.
-
-İkinci deneyin yeniden üretilebilmesi için bu mimariyle eğitim yapan kodun da projede bulunması önerilir.
+İkinci modelin eğitilmiş ağırlıkları `mlp_mnist_model_2.pth` dosyasında bulunmaktadır. 
 
 ## 9. Kullanılan Kütüphaneler
 
